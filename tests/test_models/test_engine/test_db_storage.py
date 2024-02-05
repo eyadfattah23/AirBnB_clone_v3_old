@@ -118,3 +118,5 @@ class TestDBStorage(unittest.TestCase):
         self.assertIsNone(models.storage.get(None, new_obj.id))
         self.assertIsNone(models.storage.get(State, None))
         self.assertIsNotNone(models.storage.get(State, new_obj.id))
+        self.assertIsNone(models.storage.get(State, 123))
+        self.assertIsNone(models.storage.get(State, '123'))
