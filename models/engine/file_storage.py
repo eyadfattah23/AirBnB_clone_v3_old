@@ -77,10 +77,11 @@ class FileStorage:
             cls (class): the class (type) of the object that we want to get
             id (uuid4 str): id of the object
         """
-        if cls and id:
-            key = f"{cls.__name__}.{id}"
-            return self.all(cls).get(key)
-
+        if cls in classes.values() and id and type(id) is str:
+            objects = self.all(cls)
+            for key, value in objects.items():
+                if key.split(".")[1] == id:
+                    return value
         return None
 
     def count(self, cls=None):
