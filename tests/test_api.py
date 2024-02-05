@@ -28,3 +28,12 @@ class TestFlask(unittest.TestCase):
         # Assert the response content is as expected
         expected_response = jsonify({"status": "OK"}).json
         self.assertEqual(response.json, expected_response)
+
+    def test_404_endpoint(self):
+        """ Make a request to the "not found" endpoint"""
+        response = self.client.get('/api/v1/nop')
+
+        self.assertEqual(response.status_code, 404)
+
+        expected_response = jsonify({"error": "Not found"}).json
+        self.assertEqual(response.json, expected_response)

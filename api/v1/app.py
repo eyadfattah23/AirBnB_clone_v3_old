@@ -16,7 +16,7 @@ app.register_blueprint(app_views)
 
 
 @app.teardown_appcontext
-def close_storage(error):
+def close_storage(ctx):
     """a function to call storage.close()"""
     return storage.close()
 
