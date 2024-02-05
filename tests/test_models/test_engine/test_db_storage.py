@@ -120,3 +120,23 @@ class TestDBStorage(unittest.TestCase):
         self.assertIsNotNone(models.storage.get(State, new_obj.id))
         self.assertIsNone(models.storage.get(State, 123))
         self.assertIsNone(models.storage.get(State, '123'))
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing file storage")
+    def test_count(self):
+        count = 0
+        count = models.storage.count()
+        self.assertEqual(type(count), int)
+        self.assertEqual(count, len(models.storage.all()))
+        b = BaseModel()
+        p = Place()
+        s = State()
+        c = City()
+        self.assertEqual(models.storage.count(), len(models.storage.all()))
+        self.assertEqual(models.storage.count(BaseModel),
+                         len(models.storage.all(BaseModel)))
+        self.assertEqual(models.storage.count(Place),
+                         len(models.storage.all(Place)))
+        self.assertEqual(models.storage.count(State),
+                         len(models.storage.all(State)))
+        self.assertEqual(models.storage.count(
+            City), len(models.storage.all(City)))
