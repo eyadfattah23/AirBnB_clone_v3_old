@@ -47,6 +47,6 @@ def place_amenity(place_id, amenity_id):
         if amenity_id == amen.id:
             return jsonify(amenity.to_dict()), 200
 
-    place.amenities.append(amenity)
+    place.amenities.append(amenity.to_dict())
     storage.save()
     return jsonify(amenity.to_dict()), 201
