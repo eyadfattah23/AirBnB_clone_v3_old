@@ -40,11 +40,13 @@ def delete_state(state_id):
 def post_state():
     """a function to create a new State object"""
     try:
+        # transform the HTTP body request to a dictionary
         json_req = request.get_json()
     except Exception:
         json_req = None
 
     if not json_req:
+        # If the HTTP body request is not valid JSON, raise a 400 error
         return jsonify({"error": "Not a JSON"}), 400
     if 'name' not in json_req:
         return jsonify({"error": "Missing name"}), 400
