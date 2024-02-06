@@ -19,7 +19,7 @@ class TestFlask(unittest.TestCase):
         self.app_context.pop()
 
     def test_status_endpoint(self):
-        """ Make a request to the '/status' endpoint"""
+        """ test a request to the '/status' endpoint"""
         response = self.client.get('/api/v1/status')
 
         # Assert the response status code is 200 (OK)
@@ -30,7 +30,7 @@ class TestFlask(unittest.TestCase):
         self.assertEqual(response.json, expected_response)
 
     def test_404_endpoint(self):
-        """ Make a request to the "not found" endpoint"""
+        """ test a request to the "not found" endpoint"""
         response = self.client.get('/api/v1/nop')
 
         self.assertEqual(response.status_code, 404)
