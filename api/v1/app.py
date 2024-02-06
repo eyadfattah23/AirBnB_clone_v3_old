@@ -11,6 +11,7 @@ from models import storage
 from os import getenv
 from flask_cors import CORS
 app = Flask(__name__)
+# allowing: /* for 0.0.0.0
 cors = CORS(app=app, resources={r'/*': {'origins': '0.0.0.0'}})
 app.register_blueprint(app_views)
 
